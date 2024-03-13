@@ -1,0 +1,56 @@
+{
+    "status": "success",
+    "received": {
+        "visitor_id": "sngztzd76ybltnivtdr",
+        "event_type": "page_view",
+        "event_data": {
+            "url": "/index.html",
+            "screenWidth": 1920,
+            "screenHeight": 1080,
+            "devicePixelRatio": 1,
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "language": "en-GB",
+            "platform": "Linux x86_64",
+            "isTouchDevice": false,
+            "orientation": "landscape-primary",
+            "timeOffset": -330,
+            "onlineStatus": "Online",
+            "memory": 8,
+            "cpuCores": 12
+        },
+        "timestamp": "2024-03-11T23:04:57.128Z"
+    }
+}
+
+{
+    "status": "success",
+    "received": {
+        "deviceInformation": {
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "screenWidth": 1920,
+            "screenHeight": 1080,
+            "browserLanguage": "en-GB",
+            "timezone": -330,
+            "platform": "Linux x86_64",
+            "cookiesEnabled": true,
+            "doNotTrack": "1",
+            "hardwareConcurrency": 12,
+            "plugins": [
+                {
+                    "name": "Chrome PDF Plugin",
+                    "description": "Portable Document Format",
+                    "mimeTypes": [
+                        "application/x-google-chrome-pdf"
+                    ]
+                },
+                {
+                    "name": "Chrome PDF Viewer",
+                    "description": "",
+                    "mimeTypes": [
+                        "application/pdf"
+                    ]
+                }
+            ]
+        }
+    }
+}
