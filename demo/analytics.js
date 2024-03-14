@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem(storageKey, JSON.stringify({ userID: userID, timestamp: currentTime }));
 
-    fetch('http://localhost:8000/track-visit/', {
+    // fetch('http://localhost:8000/track-visit/', {
+    fetch('https://hitanalytics.fly.dev/track-visit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

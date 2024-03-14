@@ -60,7 +60,13 @@ class Visit(BaseModel):
     public_key: str = Field(..., alias="secret_code")  # Map secret_code to public_key
 
 
-@app.post("/track-visit/")
+@app.get("/")
+def read_root(request: Request):
+    client_host = request.client.host
+    return {"client_host": client_host}
+
+
+@app.post("/track-visit")
 async def track_visit(visit: Visit, request: Request):
     ip_address = request.client.host  # Default to the client's host IP
     ip_country = "Unknown"  # Placeholder, adjust as necessary or remove if unused
