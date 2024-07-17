@@ -10,6 +10,8 @@ from datetime import date
 import os
 
 DATABASE_URL = os.environ.get("DB_URL")
+
+
 app = FastAPI()
 
 # Configure CORS middleware to allow requests from your frontend origin
@@ -38,14 +40,28 @@ class UserVisit(Base):
     public_key = Column(String)  # Column to store secret_code
 
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+# Async function to create database tables
+async def create_tables():
+    async with database.transaction():
+        await database.execute(
+            """
+            CREATE TABLE IF NOT EXISTS user_visits (
+                id SERIAL PRIMARY KEY,
+                user_id VARCHAR(255) NOT NULL,
+                visit_date DATE NOT NULL,
+                ip_address VARCHAR(255),
+                ip_country VARCHAR(255),
+                public_key VARCHAR(255)
+            )
+            """
+        )
 
 
-# Startup event to connect to the database
+# Startup event to connect to the database and create tables if not exist
 @app.on_event("startup")
 async def startup():
     await database.connect()
+    await create_tables()
 
 
 # Shutdown event to disconnect from the database
@@ -90,8 +106,12 @@ async def track_visit(visit: Visit, request: Request):
 
     try:
         last_record_id = await database.execute(query)
+        print(
+            f"Visitor IP: {ip_address} ({ip_country}) -- tracked id: {last_record_id}"
+        )
         return {"message": "Visit tracked successfully", "id": last_record_id}
     except Exception as e:
+        print("Exception occurred:", str(e))  # Print the exception message
         # Log the exception or handle it as needed
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

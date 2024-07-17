@@ -8,19 +8,6 @@ DATABASE_URL = os.environ.get("DB_URL")
 database = Database(DATABASE_URL)
 
 
-# from sqlalchemy import URL, create_engine
-
-# connection_string = URL.create(
-#     'postgresql',
-#     username='koyeb-adm',
-#     password='lvkRjdaZ9Oo4',
-#     host='ep-broad-haze-72278793.ap-southeast-1.pg.koyeb.app',
-#     database='koyebdb',
-# )
-
-# engine = create_engine(connection_string)
-
-
 Base = declarative_base()
 
 
