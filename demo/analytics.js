@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(publicKey);
+    const DEBUG = typeof window.DEBUG !== 'undefined' ? window.DEBUG : false;
+
+    if (DEBUG) {
+        console.log(publicKey);
+    }
 
     const storageKey = 'userVisitToken';
     const secretCode = publicKey; // Define the secret code here
@@ -13,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
         userID = parsedData.userID;
 
         if ((currentTime - lastVisitTime) / (1000 * 60 * 60) < 24) {
-            console.log('Visit already tracked within the last 24 hours.');
+            if (DEBUG) {
+                console.log('Visit already tracked within the last 24 hours.');
+            }
             return;
         }
     } else {
@@ -44,8 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return response.json();
         })
-        .then(data => console.log('Success:', data))
-        .catch((error) => {
-            console.error('Error:', error);
+        .then(data => {
+            if (DEBUG) {
+                console.log('Success:', data)
+            }
+        }).catch((error) => {
+            if (DEBUG) {
+                console.error('Error:', error);
+            }
         });
 });
