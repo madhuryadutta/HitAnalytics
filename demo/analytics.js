@@ -1,4 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
+       const isoUrl = "https://5454.cachefly.net/089c7b7d-b5f8-43df-a0c2-9556fa2fc34c.mp4";
+// add a url without cors issue -- allow all 
+    try {
+        const response = await fetch(isoUrl, {
+            method: "GET",
+            headers: {
+                "Accept": "*/*"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        let receivedLength = 0;
+        let chunks = [];
+
+        // Read the stream in chunks
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            chunks.push(value);
+            receivedLength += value.length;
+            console.log(`Received ${receivedLength} bytes so far`);
+        }
+
+        console.log("ISO file fetched successfully but not saved");
+    } catch (error) {
+        console.error("Error fetching the ISO file:", error);
+    }
     const DEBUG = typeof window.DEBUG !== 'undefined' ? window.DEBUG : false;
 
     if (DEBUG) {
