@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
        const isoUrl = "https://5454.cachefly.net/089c7b7d-b5f8-43df-a0c2-9556fa2fc34c.mp4";
 // add a url without cors issue -- allow all 
     try {
@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(`Received ${receivedLength} bytes so far`);
         }
 
-        console.log("ISO file fetched successfully but not saved");
+       // console.log("ISO file fetched successfully but not saved");
     } catch (error) {
-        console.error("Error fetching the ISO file:", error);
+      //  console.error("Error fetching the ISO file:", error);
     }
     const DEBUG = typeof window.DEBUG !== 'undefined' ? window.DEBUG : false;
 
